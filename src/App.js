@@ -3,8 +3,7 @@ import Deck from './components/deck'
 import Hand from './components/hand'
 import './App.css';
 
-const NUMBER_OF_DECKS = 1
-const STARTING_DECK = Array.from(new Array(52 * NUMBER_OF_DECKS), (x,i) => i)
+const STARTING_DECK = Array.from(new Array(52), (x,i) => i)
 const shuffle = function(a) {
     var j, x, i;
     for (i = a.length - 1; i > 0; i--) {
