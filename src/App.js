@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Deck from './components/deck.js'
+import Deck from './components/deck'
+import Hand from './components/hand'
 import './App.css';
 
-const FIRST_PLAYER = 0
 const NUMBER_OF_DECKS = 1
 const STARTING_DECK = Array.from(new Array(52 * NUMBER_OF_DECKS), (x,i) => i)
 const shuffle = function(a) {
@@ -21,33 +21,27 @@ class App extends Component {
     super(props)
     this.state = {
       deck: shuffle(STARTING_DECK),
-      player: FIRST_PLAYER,
-      pile: [],
-      drawIndex: 0
+      playerHand: []
     }
   }
 
-  drawCard(card) {
-    var updatedDeck = this.state.deck.slice(this.state.drawIndex, 1)
-    var pile = this.state.pile.push(card)
+  drawCard() {
+    var deck = this.state.deck
+    var playerHand = this.state.playerHand
+    playerHand.push(deck[0])
+    deck = deck.slice(1)
     this.setState({
-      deck: updatedDeck,
-      pile: pile,
-      drawIndex: this.state.drawIndex + 1
+      deck: deck,
+      playerHand: playerHand
     })
-    if (this.state.deck.length === 0) {
-      this.setState({
-        deck: this.state.pile,
-        pile: [],
-        drawIndex: 0
-      })
-    }
   }
 
   render() {
     return (
       <div className="Golf">
         <Deck cards={this.state.deck} />
+        <Hand cards={this.state.playerHand} />
+        <button onClick={this.drawCard.bind(this)}>draw card</button>
       </div>
     );
   }
