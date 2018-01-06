@@ -24,6 +24,7 @@
 .discard {
   margin-left: 10px;
   float: left;
+  font-size: 1.3vw;
 }
 
 .top {
@@ -45,6 +46,6 @@
 }
 
 .hand {
-  width: 100%;
-  text-align: center;
+  float: left;
+  margin-left: 1vw;
 }

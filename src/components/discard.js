@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Discard extends Component {
   render() {
     return (
-      <div class='discard card'>
+      <div className='discard card' onClick={() => this.props.handleClick({ pile: 'discard' })}>
         {this.props.cards.toString()}
       </div>
     )

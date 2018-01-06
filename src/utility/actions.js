@@ -23,6 +23,26 @@ const deal = function(state, index) {
 }
 
 module.exports = {
+  handToBoard(state, index) {
+    if (state.hand) {
+      var card1 = state.hand
+      var card2 = state.board[index]
+      state.hand = null
+      state.board[index] = card1
+      state.discard.unshift(card2)
+    }
+    return state
+  },
+  switchDiscardHand(state) {
+    if (!state.hand) {
+      state.hand = state.discard[0]
+      state.discard = state.discard.slice(1)
+    } else {
+      state.discard.unshift(state.hand)
+      state.hand = null
+    }
+    return state
+  },
   newGame() {
     var state = {
       board: [null, null, null, null, null, null],
