@@ -36,7 +36,7 @@ class App extends Component {
         <div className='top'>
           <Deck cards={this.state.deck} handleClick={this.handleClick.bind(this)} />
           <Discard cards={this.state.discard} handleClick={this.handleClick.bind(this)} />
-          <Hand card={this.state.hand} />
+          {this.state.hand && <Hand card={this.state.hand} />}
         </div>
         <Board cards={this.state.board} handleClick={this.handleClick.bind(this)} />
       </div>
