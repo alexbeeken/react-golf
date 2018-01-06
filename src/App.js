@@ -14,11 +14,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="Golf">
-        <Deck cards={this.state.deck} />
-        <Hand card={this.state.hand} />
+      <div className='golf'>
+        <div className='top'>
+          <Deck cards={this.state.deck} />
+          <Discard cards={this.state.discard} />
+        </div>
         <Board cards={this.state.board} />
-        <Discard cards={this.state.discard} />
+        <Hand card={this.state.hand} />
       </div>
     );
   }
