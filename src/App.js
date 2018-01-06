@@ -4,7 +4,7 @@ import Hand from './components/hand'
 import Board from './components/board'
 import Discard from './components/discard'
 import './App.css'
-import { newGame, switchDiscardHand, handToBoard } from './utility/actions'
+import { newGame, switchDiscardHand, handToBoard, deckToHand } from './utility/actions'
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +20,12 @@ class App extends Component {
       case 'board':
         this.setState(handToBoard(this.state, options['index']))
         break
+      case 'deck':
+        console.log('DECK TO HAND')
+        this.setState(deckToHand(this.state))
+        break
       default:
+        console.log('IMPOSSIBRU')
         break
     }
   }
@@ -29,7 +34,7 @@ class App extends Component {
     return (
       <div className='golf'>
         <div className='top'>
-          <Deck cards={this.state.deck} />
+          <Deck cards={this.state.deck} handleClick={this.handleClick.bind(this)} />
           <Discard cards={this.state.discard} handleClick={this.handleClick.bind(this)} />
           <Hand card={this.state.hand} />
         </div>

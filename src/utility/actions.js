@@ -43,6 +43,13 @@ module.exports = {
     }
     return state
   },
+  deckToHand(state) {
+    if (!state.hand) {
+      state.hand = state.deck[0]
+      state.deck = state.deck.slice(1)
+    }
+    return state
+  },
   newGame() {
     var state = {
       board: [null, null, null, null, null, null],
