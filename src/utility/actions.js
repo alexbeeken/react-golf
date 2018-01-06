@@ -11,38 +11,25 @@ const shuffle = function(deck) {
   return deck
 }
 
-const times = i => fn => {
-  if (i > 0) {
-    fn()
-    times (i - 1) (fn)
-  }
-}
-
 const deal = function(state, index) {
-  for (var i = 0; i < 6; i++) {
-    state.board[i] = state.deck[0]
+  state.board = state.board.map((i) => {
+    var card = state.deck[0]
     state.deck = state.deck.slice(1)
-  }
+    return card
+  })
+  state.discard.push(state.deck[0])
+  state.deck = state.deck.slice(1)
   return state
 }
 
 module.exports = {
   newGame() {
     var state = {
-      board: [],
+      board: [null, null, null, null, null, null],
       deck: shuffle(STARTING_DECK),
       hand: null,
+      discard: []
     }
     return deal(state)
   },
 };
-
-/*
-all actions:
-1. draw a single card from deck and place it in Hand
-1. draw a single card from discard and place it in Hand
-2. discard a card in Hand
-3. replace a card on board with hand
-4. discard a card from the board
-5.
-*/
