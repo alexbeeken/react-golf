@@ -21,11 +21,9 @@ class App extends Component {
         this.setState(handToBoard(this.state, options['index']))
         break
       case 'deck':
-        console.log('DECK TO HAND')
         this.setState(deckToHand(this.state))
         break
       default:
-        console.log('IMPOSSIBRU')
         break
     }
   }
@@ -39,6 +37,7 @@ class App extends Component {
           {this.state.hand && <Hand card={this.state.hand} />}
         </div>
         <Board cards={this.state.board} handleClick={this.handleClick.bind(this)} />
+        <h1>{this.state.turns}</h1>
       </div>
     );
   }
