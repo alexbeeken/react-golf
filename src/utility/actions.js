@@ -22,15 +22,18 @@ const deal = function(state, index) {
   return state
 }
 
+const refreshDeck = function(state) {
+  state.deck = shuffle(state.discard)
+  state.discard = state.deck[0]
+  state.deck = state.deck.slice(1)
+}
+
 const newTurn = function(state) {
-  if (state.deck.length > 0) {
-    state.discard.unshift(state.deck[0])
-    state.deck = state.deck.slice(1)
-    state.turns += 1
-    state.drewFromDeck = false
-  } else {
-    console.log('RESHUFFLE DISCARD PILE')
+  if (state.deck.length === 0) {
+    state = refreshDeck(state)
   }
+  state.turns += 1
+  state.drewFromDeck = false
   return state
 }
 
@@ -47,7 +50,7 @@ module.exports = {
     return state
   },
   switchDiscardHand(state) {
-    if (!state.hand) {
+    if (state.hand === null) {
       state.hand = state.discard[0]
       state.discard = state.discard.slice(1)
     } else {
@@ -60,7 +63,7 @@ module.exports = {
     return state
   },
   deckToHand(state) {
-    if (!state.hand) {
+    if (state.hand === null) {
       state.hand = state.deck[0]
       state.deck = state.deck.slice(1)
       state.drewFromDeck = true

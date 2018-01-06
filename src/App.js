@@ -34,7 +34,7 @@ class App extends Component {
         <div className='top'>
           <Deck cards={this.state.deck} handleClick={this.handleClick.bind(this)} />
           <Discard cards={this.state.discard} handleClick={this.handleClick.bind(this)} />
-          {this.state.hand && <Hand card={this.state.hand} />}
+          {this.state.hand !== null && <Hand card={this.state.hand} />}
         </div>
         <Board cards={this.state.board} handleClick={this.handleClick.bind(this)} />
         <h1>{this.state.turns}</h1>
