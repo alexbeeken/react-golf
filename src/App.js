@@ -9,7 +9,8 @@ import { newGame, switchDiscardHand, handToBoard, deckToHand } from './utility/a
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = newGame()
+    var num_players = 3
+    this.state = newGame(num_players)
   }
 
   handleClick(options) {
@@ -29,6 +30,11 @@ class App extends Component {
   }
 
   render() {
+    var boards = this.state.boards.map((board) => {
+                    return <Board
+                              cards={board}
+                              handleClick={this.handleClick.bind(this)} />
+                  })
     return (
       <div className='golf'>
         <div className='top'>
@@ -36,7 +42,7 @@ class App extends Component {
           <Discard cards={this.state.discard} handleClick={this.handleClick.bind(this)} />
           {this.state.hand !== null && <Hand card={this.state.hand} />}
         </div>
-        <Board cards={this.state.board} handleClick={this.handleClick.bind(this)} />
+        {boards}
         <h1>{this.state.turns}</h1>
       </div>
     );
