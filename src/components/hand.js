@@ -4,7 +4,7 @@ class Hand extends Component {
   render() {
     return (
       <div class='hand'>
-        {this.props.cards.toString()}
+        {this.props.card}
       </div>
     )
   }
