@@ -24,8 +24,9 @@ const deal = function(state, index) {
 
 const refreshDeck = function(state) {
   state.deck = shuffle(state.discard)
-  state.discard = state.deck[0]
+  state.discard = [state.deck[0]]
   state.deck = state.deck.slice(1)
+  return state
 }
 
 const newTurn = function(state) {
