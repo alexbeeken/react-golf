@@ -53,7 +53,7 @@ const score = function(card) {
     case isAce(card):
       return -2
     case isNumber(card):
-      return group(card)
+      return group(card) + 1
     case isJackQueen(card):
       return 10
     case isKing(card) < 52:
