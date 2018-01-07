@@ -1,5 +1,8 @@
 const STARTING_DECK = Array.from(new Array(52), (x,i) => i)
-const BLANK_BOARD = [null, null, null, null, null, null]
+
+const blankBoard = function() {
+  return [null, null, null, null, null, null]
+}
 
 const deal = function(state, index) {
   state.boards = state.boards.map((board) => {
@@ -51,7 +54,11 @@ const shuffle = function(deck) {
 }
 
 const showBoardCard = function(state, index) {
-  state.boardShowings[state.currentPlayer][index] += 1
+  if (state.boardShowings[state.currentPlayer][index]) {
+    return state
+  } else {
+    state.boardShowings[state.currentPlayer][index] += 1
+  }
   return state
 }
 
@@ -109,7 +116,7 @@ module.exports = {
     return numShowingCurrent(state) < 2
   },
   newGame(num_players) {
-    var boards = Array.from(new Array(num_players), (x) => BLANK_BOARD)
+    var boards = Array.from(new Array(num_players), (x) => blankBoard())
     var state = {
       deck: shuffle(STARTING_DECK),
       hand: null,

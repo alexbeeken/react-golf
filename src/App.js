@@ -45,6 +45,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.boardShowings[1])
     var miniBoards = this.state.boards.map((board, index) => {
       return <MiniBoard
                 cards={cardFaces(board)}
