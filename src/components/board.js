@@ -52,12 +52,12 @@ class Board extends Component {
         <div className='pair2'>
           {this.boardCard(2)}
           {this.boardCard(3)}
-          <div className='score'>{this.showPair(0, 1) && this.secondPairScore()}</div>
+          <div className='score'>{this.showPair(2, 3) && this.secondPairScore()}</div>
         </div>
         <div className='pair3'>
           {this.boardCard(4)}
           {this.boardCard(5)}
-          <div className='score'>{this.showPair(0, 1) && this.thirdPairScore()}</div>
+          <div className='score'>{this.showPair(4, 5) && this.thirdPairScore()}</div>
         </div>
       </div>
     )
