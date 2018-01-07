@@ -27,8 +27,10 @@ class App extends Component {
   handleClick(options) {
     switch(options['pile']) {
       case 'discard':
-        this.setState(switchDiscardHand(this.state))
-        break
+        if (!needsToChose(this.state)) {
+          this.setState(switchDiscardHand(this.state))
+          break
+        }
       case 'board':
         if (needsToChose(this.state)) {
           this.setState(showBoardCard(this.state, options['index']))
@@ -37,8 +39,10 @@ class App extends Component {
         }
         break
       case 'deck':
-        this.setState(deckToHand(this.state))
-        break
+        if (!needsToChose(this.state)) {
+          this.setState(deckToHand(this.state))
+          break
+        }
       default:
         break
     }
