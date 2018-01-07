@@ -9,7 +9,10 @@ import { newGame,
          switchDiscardHand,
          handToBoard,
          deckToHand,
-         currentBoard
+         currentBoard,
+         currentShowing,
+         showBoardCard,
+         needsToChose
         } from './utility/actions'
 import { cardFace, cardFaces } from './utility/card-faces'
 import { scorePlayer } from './utility/score'
@@ -27,7 +30,11 @@ class App extends Component {
         this.setState(switchDiscardHand(this.state))
         break
       case 'board':
-        this.setState(handToBoard(this.state, options['index']))
+        if (needsToChose(this.state)) {
+          this.setState(showBoardCard(this.state, options['index']))
+        } else {
+          this.setState(handToBoard(this.state, options['index']))
+        }
         break
       case 'deck':
         this.setState(deckToHand(this.state))
@@ -39,7 +46,11 @@ class App extends Component {
 
   render() {
     var miniBoards = this.state.boards.map((board, index) => {
-      return <MiniBoard cards={cardFaces(board)} key={index} name={index} />
+      return <MiniBoard
+                cards={cardFaces(board)}
+                key={index}
+                name={index}
+                showing={this.state.boardShowings[index]} />
     })
     return (
       <div className='golf'>
@@ -48,7 +59,7 @@ class App extends Component {
           <Discard cards={cardFaces(this.state.discard)} handleClick={this.handleClick.bind(this)} />
           {this.state.hand !== null && <Hand card={cardFace(this.state.hand)} />}
         </div>
-        <Board cards={currentBoard(this.state)} handleClick={this.handleClick.bind(this)} />
+        <Board cards={currentBoard(this.state)} handleClick={this.handleClick.bind(this)} showing={currentShowing(this.state)} />
         <div className='minis'>
           {miniBoards}
         </div>

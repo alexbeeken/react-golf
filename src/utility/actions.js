@@ -14,6 +14,10 @@ const deal = function(state, index) {
   return state
 }
 
+const numShowingCurrent = function(state) {
+  return state.boardShowings[state.currentPlayer].reduce((x, i) => x + i )
+}
+
 const newTurn = function(state) {
   if (state.deck.length === 0) {
     state = refreshDeck(state)
@@ -46,8 +50,17 @@ const shuffle = function(deck) {
   return deck
 }
 
+const showBoardCard = function(state, index) {
+  state.boardShowings[state.currentPlayer][index] += 1
+  return state
+}
+
 const currentBoard = function(state) {
   return state.boards[state.currentPlayer]
+}
+
+const currentShowing = function(state) {
+  return state.boardShowings[state.currentPlayer]
 }
 
 module.exports = {
@@ -58,7 +71,7 @@ module.exports = {
       state.hand = null
       state.boards[state.currentPlayer][index] = card1
       state.discard.unshift(card2)
-      state = newTurn(state)
+      state = newTurn(showBoardCard(state, index))
     }
     return state
   },
@@ -86,6 +99,15 @@ module.exports = {
   currentBoard(state) {
     return currentBoard(state)
   },
+  currentShowing(state) {
+    return currentShowing(state)
+  },
+  showBoardCard(state, index) {
+    return showBoardCard(state, index)
+  },
+  needsToChose(state) {
+    return numShowingCurrent(state) < 2
+  },
   newGame(num_players) {
     var boards = Array.from(new Array(num_players), (x) => BLANK_BOARD)
     var state = {
@@ -95,6 +117,7 @@ module.exports = {
       turns: 0,
       drewFromDeck: false,
       boards: boards,
+      boardShowings: boards,
       currentPlayer: Math.floor(Math.random() * boards.length)
     }
     return deal(state)

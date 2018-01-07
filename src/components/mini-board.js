@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 
 class MiniBoard extends Component {
+  miniCard(index) {
+    return (
+      <div className='miniBoardCard miniCard'>
+        {this.props.showing[index] && this.props.cards[index]}
+      </div>
+    )
+  }
+
   render() {
+    // FIX MY COLUMNS PLEASE
     return (
       <div className='miniBoard'>
         <p>{this.props.name}</p>
-        <div className='miniBoardCard miniCard'>{this.props.cards[0]}</div>
-        <div className='miniBoardCard miniCard'>{this.props.cards[1]}</div>
-        <div className='miniBoardCard miniCard'>{this.props.cards[2]}</div>
-        <div className='miniBoardCard miniCard'>{this.props.cards[3]}</div>
-        <div className='miniBoardCard miniCard'>{this.props.cards[4]}</div>
-        <div className='miniBoardCard miniCard'>{this.props.cards[5]}</div>
+        {this.miniCard(0)}
+        {this.miniCard(1)}
+        {this.miniCard(2)}
+        {this.miniCard(3)}
+        {this.miniCard(4)}
+        {this.miniCard(5)}
       </div>
     )
   }

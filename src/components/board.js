@@ -23,23 +23,41 @@ class Board extends Component {
     return scorePair(this.props.cards[4], this.props.cards[5])
   }
 
+  boardCard(index) {
+    return <div
+      className='boardCard card'
+      onClick={
+        () => this.handleClick(index)
+      }>
+      {this.isShowing(index) && this.face(index)}
+    </div>
+  }
+
+  isShowing(index) {
+    return this.props.showing[index]
+  }
+
+  showPair(i1, i2) {
+    return this.isShowing(i1) && this.isShowing(i2)
+  }
+
   render() {
     return (
       <div className='board'>
         <div className='pair1'>
-          <div className='boardCard card' onClick={() => this.handleClick(0)}>{this.face(0)}</div>
-          <div className='boardCard card' onClick={() => this.handleClick(1)}>{this.face(1)}</div>
-          <div className='score'>{this.firstPairScore()}</div>
+          {this.boardCard(0)}
+          {this.boardCard(1)}
+          <div className='score'>{this.showPair(0, 1) && this.firstPairScore()}</div>
         </div>
         <div className='pair2'>
-          <div className='boardCard card' onClick={() => this.handleClick(2)}>{this.face(2)}</div>
-          <div className='boardCard card' onClick={() => this.handleClick(3)}>{this.face(3)}</div>
-          <div className='score'>{this.secondPairScore()}</div>
+          {this.boardCard(2)}
+          {this.boardCard(3)}
+          <div className='score'>{this.showPair(0, 1) && this.secondPairScore()}</div>
         </div>
         <div className='pair3'>
-          <div className='boardCard card' onClick={() => this.handleClick(4)}>{this.face(4)}</div>
-          <div className='boardCard card' onClick={() => this.handleClick(5)}>{this.face(5)}</div>
-          <div className='score'>{this.thirdPairScore()}</div>
+          {this.boardCard(4)}
+          {this.boardCard(5)}
+          <div className='score'>{this.showPair(0, 1) && this.thirdPairScore()}</div>
         </div>
       </div>
     )
