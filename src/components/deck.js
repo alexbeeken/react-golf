@@ -5,7 +5,6 @@ class Deck extends Component {
     return (
       <div className='deck card'
         onClick={() => this.props.handleClick({ pile: 'deck' })}>
-        {this.props.cards.toString()}
       </div>
     )
   }

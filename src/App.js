@@ -9,9 +9,10 @@ import { newGame,
          switchDiscardHand,
          handToBoard,
          deckToHand,
-         currentBoard,
-         otherBoards
+         currentBoard
         } from './utility/actions'
+import { cardFace, cardFaces } from './utility/card-faces'
+import { scorePlayer } from './utility/score'
 
 class App extends Component {
   constructor(props) {
@@ -38,14 +39,14 @@ class App extends Component {
 
   render() {
     var miniBoards = this.state.boards.map((board, index) => {
-      return <MiniBoard cards={board} key={index} name={index} />
+      return <MiniBoard cards={cardFaces(board)} key={index} name={index} />
     })
     return (
       <div className='golf'>
         <div className='top'>
-          <Deck cards={this.state.deck} handleClick={this.handleClick.bind(this)} />
-          <Discard cards={this.state.discard} handleClick={this.handleClick.bind(this)} />
-          {this.state.hand !== null && <Hand card={this.state.hand} />}
+          <Deck handleClick={this.handleClick.bind(this)} />
+          <Discard cards={cardFaces(this.state.discard)} handleClick={this.handleClick.bind(this)} />
+          {this.state.hand !== null && <Hand card={cardFace(this.state.hand)} />}
         </div>
         <Board cards={currentBoard(this.state)} handleClick={this.handleClick.bind(this)} />
         <div className='minis'>
@@ -53,6 +54,7 @@ class App extends Component {
         </div>
         <h1>turns: {this.state.turns}</h1>
         <h1>currentPlayer: {this.state.currentPlayer}</h1>
+        <h1>score: {scorePlayer(currentBoard(this.state))}</h1>
       </div>
     );
   }

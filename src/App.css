@@ -40,14 +40,25 @@
   min-width: 200px;
 }
 
-.boardCard {
+.pair1, .pair2, .pair3 {
+  display: flex;
+  flex-direction: column;
   float: left;
+}
+
+.boardCard {
   margin: 1vw;
 }
 
 .hand {
   float: left;
   margin-left: 1vw;
+}
+
+.score {
+  float: left;
+  font-size: 2vw;
+  margin: auto;
 }
 
 .minis {
