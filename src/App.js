@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import Deck from './components/deck'
 import Hand from './components/hand'
 import Board from './components/board'
+import MiniBoard from './components/mini-board'
 import Discard from './components/discard'
 import './App.css'
-import { newGame, switchDiscardHand, handToBoard, deckToHand } from './utility/actions'
+import { newGame,
+         switchDiscardHand,
+         handToBoard,
+         deckToHand,
+         currentBoard,
+         otherBoards
+        } from './utility/actions'
 
 class App extends Component {
   constructor(props) {
@@ -30,11 +37,9 @@ class App extends Component {
   }
 
   render() {
-    var boards = this.state.boards.map((board) => {
-                    return <Board
-                              cards={board}
-                              handleClick={this.handleClick.bind(this)} />
-                  })
+    var miniBoards = this.state.boards.map((board, index) => {
+      return <MiniBoard cards={board} key={index} name={index} />
+    })
     return (
       <div className='golf'>
         <div className='top'>
@@ -42,8 +47,12 @@ class App extends Component {
           <Discard cards={this.state.discard} handleClick={this.handleClick.bind(this)} />
           {this.state.hand !== null && <Hand card={this.state.hand} />}
         </div>
-        {boards}
-        <h1>{this.state.turns}</h1>
+        <Board cards={currentBoard(this.state)} handleClick={this.handleClick.bind(this)} />
+        <div className='minis'>
+          {miniBoards}
+        </div>
+        <h1>turns: {this.state.turns}</h1>
+        <h1>currentPlayer: {this.state.currentPlayer}</h1>
       </div>
     );
   }
