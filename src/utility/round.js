@@ -65,8 +65,8 @@ const roundEnd = function(state) {
       highestScore = score
       highestPlayer = playerIdx
     }
-    roundScores[playerIdx] = score
-    return roundScores[playerIdx]
+    roundScores[state.rounds] = score
+    return roundScores
   })
   state.rounds += 1
   if (state.rounds >= state.numRounds) {

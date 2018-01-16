@@ -35,9 +35,11 @@
 }
 
 .board {
-  margin: auto;
+  margin: 0px 10vw;
   width: 42%;
+  height: 35vw;
   min-width: 200px;
+  float: left;
 }
 
 .pair1, .pair2, .pair3 {
@@ -95,4 +97,21 @@
 
 .miniScore {
   font-size: 1vw
+}
+
+.info {
+  float: left;
+  min-width: 35%;
+  font-size: 1em;
+}
+
+.score-board {
+  display: flex;
+  flex-direction: row;
+}
+
+.score-board ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
 }

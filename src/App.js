@@ -12,6 +12,7 @@ import {
   currentShowing,
   deckToHand,
   discardToHand,
+  handEmpty,
   handToBoard,
   handToDiscard
   } from './utility/turn'
@@ -30,7 +31,7 @@ class App extends Component {
   handleClick(options) {
     switch(options['pile']) {
       case 'discard':
-        if (this.state.drewFromDeck || this.state.hand) {
+        if (!handEmpty(this.state)) {
           this.setState(handToDiscard(this.state))
         } else {
           this.setState(discardToHand(this.state))
@@ -69,10 +70,10 @@ class App extends Component {
           cards={currentBoard(this.state)}
           handleClick={this.handleClick.bind(this)}
           showing={currentShowing(this.state)} />
+        <Info state={this.state} />
         <div className='minis'>
           {miniBoards}
         </div>
-        <Info state={this.state} />
       </div>
     );
   }

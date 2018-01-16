@@ -1,4 +1,5 @@
 import { roundStart } from './round'
+import { sumFinalScores } from './score'
 
 const newScoreBoard = function(numPlayers) {
   return Array.from(new Array(numPlayers), () => [])
@@ -8,10 +9,8 @@ const pickRandom = function(numPlayers) {
   return Math.floor(Math.random() * numPlayers)
 }
 
-const sumFinalScores = function(state) {
-  state.finalScores = state.scores.map((score) => {
-    return score.reduce((accum, score) => accum + score)
-  })
+const finalScores = function(state) {
+  state.scores = sumFinalScores(state.scores)
   return state
 }
 

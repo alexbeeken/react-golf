@@ -69,4 +69,12 @@ const scorePlayer = function(cards) {
   + scorePair(cards[4], cards[5])
 }
 
-export { scorePair, scorePlayer }
+const sumFinalScores = function(scores) {
+  return scores.map((score) => {
+    if (score.length !== 0) {
+      return score.reduce((accum, score) => accum + score)
+    }
+  })
+}
+
+export { scorePair, scorePlayer, sumFinalScores }

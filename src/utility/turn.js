@@ -38,7 +38,7 @@ const currentShowing = function (state) {
 }
 
 const deckToHand = function(state) {
-  if (state.hand === null) {
+  if (handEmpty(state)) {
     state.hand = state.deck[0]
     state.deck = state.deck.slice(1)
     state.drewFromDeck = true
@@ -57,8 +57,12 @@ const handToDiscard = function(state) {
   return state
 }
 
+const handEmpty = function(state) {
+  return state.hand === null
+}
+
 const discardToHand = function(state) {
-  if (choseTwo(state) && state.hand === null && !state.drewFromDeck) {
+  if (choseTwo(state) && handEmpty(state) && !state.drewFromDeck) {
     state.hand = state.discard[0]
     state.discard = state.discard.slice(1)
   }
@@ -68,7 +72,7 @@ const discardToHand = function(state) {
 const handToBoard = function(state, index) {
   if (!choseTwo(state)) {
     state = showBoardCard(state, index)
-  } else if (state.hand) {
+  } else if (!handEmpty(state)) {
     var card1 = state.hand
     var card2 = currentBoard(state)[index]
     state.hand = null
@@ -105,6 +109,7 @@ export {
   currentShowing,
   deckToHand,
   discardToHand,
+  handEmpty,
   handToBoard,
   handToDiscard,
   scorePlayer,
