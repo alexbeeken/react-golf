@@ -63,13 +63,10 @@ const score = function(card) {
   }
 }
 
-module.exports = {
-  scorePair(card1, card2) {
-    return scorePair(card1, card2)
-  },
-  scorePlayer(cards) {
-    return scorePair(cards[0], cards[1])
-    + scorePair(cards[2], cards[3])
-    + scorePair(cards[4], cards[5])
-  }
-};
+const scorePlayer = function(cards) {
+  return scorePair(cards[0], cards[1])
+  + scorePair(cards[2], cards[3])
+  + scorePair(cards[4], cards[5])
+}
+
+export { scorePair, scorePlayer }

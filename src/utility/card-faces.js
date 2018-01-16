@@ -62,13 +62,10 @@ const cardFace = function(card) {
   return FACES[card]
 }
 
-module.exports = {
-  cardFaces(cards) {
-    return cards.map((card) => {
-      return cardFace(card)
-    })
-  },
-  cardFace(card) {
+const cardFaces = function(cards) {
+  return cards.map((card) => {
     return cardFace(card)
-  }
-};
+  })
+}
+
+export { cardFaces, cardFace }

@@ -59,20 +59,21 @@ const roundStart = function(state) {
 const roundEnd = function(state) {
   var highestScore = -200
   var highestPlayer = state.currentPlayer
-  state.scores = state.scores.each((roundScores, playerIdx) => {
+  state.scores = state.scores.map((roundScores, playerIdx) => {
     var score = scorePlayer(state.boards[playerIdx])
     if (score > highestScore) {
       highestScore = score
       highestPlayer = playerIdx
     }
     roundScores[playerIdx] = score
+    return roundScores[playerIdx]
   })
   state.rounds += 1
   if (state.rounds >= state.numRounds) {
     return gameEnd(state)
   } else {
     state.currentPlayer = highestPlayer
-    return module.exports.roundStart(state)
+    return roundStart(state)
   }
 }
 
