@@ -11,7 +11,8 @@ import {
   currentShowing,
   deckToHand,
   discardToHand,
-  handToBoard
+  handToBoard,
+  handToDiscard
   } from './utility/turn'
 import { cardFace, cardFaces } from './utility/card-faces'
 import { scorePlayer } from './utility/score'
@@ -29,7 +30,11 @@ class App extends Component {
   handleClick(options) {
     switch(options['pile']) {
       case 'discard':
-        this.setState(discardToHand(this.state))
+        if (this.state.drewFromDeck || this.state.hand) {
+          this.setState(handToDiscard(this.state))
+        } else {
+          this.setState(discardToHand(this.state))
+        }
         break
       case 'board':
         this.setState(handToBoard(this.state, options['index']))
