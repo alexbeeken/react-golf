@@ -4,7 +4,11 @@ import {scorePlayer} from './score'
 const anyAllCardsShowing = function(state) {
   var res = state.boardShowings.reduce((board) => {
     return board.filter((card) => {
-      return !card
+      if (card === 0) {
+        return true
+      } else {
+        return !card
+      }
     })
   })
   return res.length === 0
