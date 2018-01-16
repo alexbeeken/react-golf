@@ -6,14 +6,12 @@ import MiniBoard from './components/mini-board'
 import Discard from './components/discard'
 import './App.css'
 import { gameStart } from './utility/game'
-import { roundStart } from './utility/round'
 import {
   currentBoard,
   currentShowing,
   deckToHand,
   discardToHand,
-  handToBoard,
-  turnStart
+  handToBoard
   } from './utility/turn'
 import { cardFace, cardFaces } from './utility/card-faces'
 import { scorePlayer } from './utility/score'
@@ -25,7 +23,7 @@ class App extends Component {
       numPlayers: 3,
       numRounds: 4
     }
-    this.state = turnStart(roundStart(gameStart(options)))
+    this.state = gameStart(options)
   }
 
   handleClick(options) {

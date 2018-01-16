@@ -1,3 +1,5 @@
+import { roundStart } from './round'
+
 const newScoreBoard = function(numPlayers) {
   return Array.from(new Array(numPlayers), () => [])
 }
@@ -21,7 +23,7 @@ const gameStart = function (options) {
     scores: newScoreBoard(options['numPlayers']),
     currentPlayer: pickRandom(options['numPlayers'])
   }
-  return state
+  return roundStart(state)
 }
 
 const gameEnd = function(state) {

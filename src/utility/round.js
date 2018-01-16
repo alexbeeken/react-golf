@@ -1,4 +1,5 @@
 import {gameEnd} from './game'
+import {turnStart} from './turn'
 import {scorePlayer} from './score'
 
 const blankBoard = function() {
@@ -51,8 +52,8 @@ const roundStart = function(state) {
   state.allCardsShowing = false
   state.currentPlayer = 0
 
-  state = dealBoards(state)
-  return discardOne(state)
+  state = discardOne(dealBoards(state))
+  return turnStart(state)
 }
 
 const roundEnd = function(state) {
