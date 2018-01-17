@@ -1,0 +1,57 @@
+.board {
+  margin: 0px 10vw;
+  width: 42%;
+  height: 35vw;
+  min-width: 200px;
+  float: left;
+}
+
+.deck {
+  float: left;
+  font-size: 1.3vw;
+}
+
+.discard {
+  margin-left: 10px;
+  float: left;
+}
+
+.hand {
+  float: left;
+  margin-left: 1vw;
+}
+
+.hidden {
+  display: none;
+}
+
+.score {
+  float: left;
+  font-size: 1vw;
+  margin: auto;
+}
+
+
+.score-board {
+  display: flex;
+  flex-direction: row;
+}
+
+.score-board ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.pair1, .pair2, .pair3 {
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
+
+.top {
+  width: 100%;
+  height: 18vw;
+  max-height: 130px;
+  min-height: 80px;
+}

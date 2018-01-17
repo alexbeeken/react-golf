@@ -5,7 +5,10 @@ import Board from './components/board'
 import MiniBoard from './components/mini-board'
 import Discard from './components/discard'
 import Info from './components/info'
-import './App.css'
+import './styles/App.css'
+import './styles/top.css'
+import './styles/card.css'
+import './styles/mini-boards.css'
 import { gameStart } from './utility/game'
 import {
   currentBoard,
@@ -22,8 +25,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     var options = {
-      numPlayers: 3,
-      numRounds: 4
+      numPlayers: 2,
+      numRounds: 2
     }
     this.state = gameStart(options)
   }
@@ -64,7 +67,7 @@ class App extends Component {
           <Discard
             cards={cardFaces(this.state.discard)}
             handleClick={this.handleClick.bind(this)} />
-          {this.state.hand !== null && <Hand card={cardFace(this.state.hand)} />}
+          <Hand card={cardFace(this.state.hand)} />
         </div>
         <Board
           cards={currentBoard(this.state)}

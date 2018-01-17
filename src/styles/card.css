@@ -1,0 +1,13 @@
+.card {
+  width: 10vw;
+  height: 16vw;
+  max-width: 80px;
+  max-height: 120px;
+  min-width: 46px;
+  min-height: 69px;
+  border: 0.2vw solid black;
+  border-radius: 5px;
+  word-wrap: break-word;
+  font-size: 3vw;
+  text-align: center;
+}

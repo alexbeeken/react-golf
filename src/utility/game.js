@@ -26,7 +26,16 @@ const gameStart = function (options) {
 }
 
 const gameEnd = function(state) {
-  return sumFinalScores(state)
+  var highScore = -200
+  var index = 0
+  var winner = sumFinalScores(state.scores).each((score) => {
+    if (score > highScore) {
+      return 0
+    }
+    index += 1
+  })
+  alert(winner)
+  return winner
 }
 
 export {gameStart, gameEnd}

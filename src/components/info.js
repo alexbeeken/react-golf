@@ -8,9 +8,9 @@ class Hand extends Component {
     var totals = sumFinalScores(state.scores)
     var scoreBoard = state.scores.map((scores, index) => {
       return (
-        <ul>
+        <ul key={index}>
           {index}
-          {scores.map((score) => { return <li>{score}</li> })}
+          {scores.map((score) => { return <li key={index + score}>{score}</li> })}
           <li>{totals[index]}</li>
         </ul>
       )
@@ -24,7 +24,7 @@ class Hand extends Component {
           <li>turnsRemaining: {state.turnsRemaining}</li>
           <li>round: {state.rounds}</li>
           <li>scoreBoard:
-            <div class='score-board'>
+            <div className='score-board'>
               {scoreBoard}
             </div>
           </li>

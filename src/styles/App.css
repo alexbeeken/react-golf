@@ -1,0 +1,13 @@
+.golf {
+  margin: 10px;
+}
+
+.boardCard {
+  margin: 1vw;
+}
+
+.info {
+  float: left;
+  min-width: 35%;
+  font-size: 1em;
+}
