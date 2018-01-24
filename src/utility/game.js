@@ -20,7 +20,8 @@ const gameStart = function (options) {
     numRounds: options['numRounds'],
     rounds: 0,
     scores: newScoreBoard(options['numPlayers']),
-    currentPlayer: pickRandom(options['numPlayers'])
+    currentPlayer: pickRandom(options['numPlayers']),
+    winner: null
   }
   return roundStart(state)
 }
@@ -28,14 +29,15 @@ const gameStart = function (options) {
 const gameEnd = function(state) {
   var highScore = -200
   var index = 0
-  var winner = sumFinalScores(state.scores).each((score) => {
+  var winner
+  sumFinalScores(state.scores).map((score) => {
     if (score > highScore) {
-      return 0
+      winner = index
     }
     index += 1
   })
-  alert(winner)
-  return winner
+  state.winner = index
+  return state
 }
 
 export {gameStart, gameEnd}

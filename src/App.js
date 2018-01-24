@@ -26,7 +26,7 @@ class App extends Component {
     super(props)
     var options = {
       numPlayers: 2,
-      numRounds: 2
+      numRounds: 1
     }
     this.state = gameStart(options)
   }
@@ -62,6 +62,7 @@ class App extends Component {
     return (
       <div className='golf'>
         <div className='top'>
+          {this.state.winner && <h1>WINNER IS {this.state.winner}!!</h1>}
           <Deck
             handleClick={this.handleClick.bind(this)} />
           <Discard
