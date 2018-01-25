@@ -11,3 +11,9 @@ It's also got a long way to go with styling and adding animations.
 Run `npm install` and then `npm start`. You should see it come up automatically or by visiting `localhost:3000`.
 
 Enjoy!
+
+## Customizing
+
+The current app supports tracking scores for one game only.
+
+The default is just one round but you can change that to 9 or 18 or whatever you like in the utility/game.js file inside of the gameNew() function. You can also change the number of players.
