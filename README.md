@@ -16,4 +16,4 @@ Enjoy!
 
 The current app supports tracking scores for one game only.
 
-The default is just one round but you can change that to 9 or 18 or whatever you like in the utility/game.js file inside of the gameNew() function. You can also change the number of players.
+The default is just one round but you can change that to 9 or 18 or whatever you like by changing the numRounds inside of App.js's options object inside the constructor. You can also adjust the numPlayers to another integer too.
