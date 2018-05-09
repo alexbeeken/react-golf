@@ -63,20 +63,25 @@ class App extends Component {
       <div className='golf'>
         <div className='top'>
           {this.state.winner && <h1>WINNER IS {this.state.winner}!!</h1>}
-          <Deck
-            handleClick={this.handleClick.bind(this)} />
-          <Discard
-            cards={cardFaces(this.state.discard)}
-            handleClick={this.handleClick.bind(this)} />
-          <Hand card={cardFace(this.state.hand)} />
+          <div class='piles'>
+            <Deck
+              handleClick={this.handleClick.bind(this)}
+              drewFromDeck={this.state.drewFromDeck} />
+            <Discard
+              cards={cardFaces(this.state.discard)}
+              handleClick={this.handleClick.bind(this)} />
+              <Hand card={cardFace(this.state.hand)} />
+          </div>
+          <Board
+            cards={currentBoard(this.state)}
+            handleClick={this.handleClick.bind(this)}
+            showing={currentShowing(this.state)} />
         </div>
-        <Board
-          cards={currentBoard(this.state)}
-          handleClick={this.handleClick.bind(this)}
-          showing={currentShowing(this.state)} />
-        <Info state={this.state} />
-        <div className='minis'>
-          {miniBoards}
+        <div className='other'>
+          <Info state={this.state} />
+          <div className='minis'>
+            {miniBoards}
+          </div>
         </div>
       </div>
     );

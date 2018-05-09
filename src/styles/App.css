@@ -3,11 +3,22 @@
 }
 
 .boardCard {
-  margin: 1vw;
+  margin: 5px;
 }
 
 .info {
+  border: 1px solid gray;
+  border-radius: 8px;
   float: left;
-  min-width: 35%;
+  width: 380px;
   font-size: 1em;
+}
+.info ul {
+  list-style-type: none;
+}
+
+.other {
+  height: 400px;
+  width: 400px;
+  float: left;
 }
